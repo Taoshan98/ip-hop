@@ -15,7 +15,7 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", 60 * 24 * 7) # 7 days
 
 SECRET_KEY = os.getenv("SECRET_KEY")
-if not ENCSECRET_KEYRYPTION_KEY:
+if not SECRET_KEY:
     raise ValueError("SECRET_KEY environment variable is not set. This is required to secure credentials.")
 
 # Fernet key for encrypting credentials in DB
