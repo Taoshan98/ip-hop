@@ -32,7 +32,7 @@ describe('ThemeToggle', () => {
 
         expect(screen.getByRole('button', { name: /light theme/i })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: /dark theme/i })).toBeInTheDocument();
-        expect(screen.getByRole('button', { name: /system theme/i })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: /auto theme/i })).toBeInTheDocument();
     });
 
     it('renders correctly with dark theme', () => {
@@ -58,7 +58,7 @@ describe('ThemeToggle', () => {
             </ThemeProvider>
         );
 
-        const systemButton = screen.getByRole('button', { name: /system theme/i });
+        const systemButton = screen.getByRole('button', { name: /auto theme/i });
         expect(systemButton).toBeInTheDocument();
         expect(systemButton).toHaveClass('bg-primary');
     });
@@ -96,7 +96,7 @@ describe('ThemeToggle', () => {
             </ThemeProvider>
         );
 
-        const systemButton = screen.getByRole('button', { name: /system theme/i });
+        const systemButton = screen.getByRole('button', { name: /auto theme/i });
         fireEvent.click(systemButton);
 
         expect(mockSetTheme).toHaveBeenCalledWith('system');
@@ -130,7 +130,7 @@ describe('ThemeToggle', () => {
 
         expect(screen.getByLabelText('Light theme')).toBeInTheDocument();
         expect(screen.getByLabelText('Dark theme')).toBeInTheDocument();
-        expect(screen.getByLabelText('System theme')).toBeInTheDocument();
+        expect(screen.getByLabelText('Auto theme')).toBeInTheDocument();
     });
 
     it('has proper title attributes for tooltips', () => {
@@ -142,7 +142,7 @@ describe('ThemeToggle', () => {
 
         expect(screen.getByTitle('Switch to light theme')).toBeInTheDocument();
         expect(screen.getByTitle('Switch to dark theme')).toBeInTheDocument();
-        expect(screen.getByTitle('Switch to system theme')).toBeInTheDocument();
+        expect(screen.getByTitle('Switch to auto theme')).toBeInTheDocument();
     });
 
     it('handles rapid theme switching', async () => {
@@ -189,7 +189,7 @@ describe('ThemeToggle', () => {
 
         // When theme is 'system', it should use systemTheme
         // This affects which button is active
-        const systemButton = screen.getByRole('button', { name: /system theme/i });
+        const systemButton = screen.getByRole('button', { name: /auto theme/i });
         expect(systemButton).toHaveClass('bg-primary');
     });
 });
