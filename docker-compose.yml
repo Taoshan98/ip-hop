@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  iphop:
+    image: ghcr.io/taoshan98/ip-hop:latest
+    container_name: iphop-app
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+      - "3000:3000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - NEXT_TELEMETRY_DISABLED=1
+    volumes:
+      # Persist database
+      - iphop-data:/app/backend/database
+      # Persist build cache for faster rebuilds
+      - iphop-cache:/app/frontend/.next/cache
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8001/api/v1/system/status" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - iphop-network
+
+volumes:
+  iphop-data:
+    driver: local
+  iphop-cache:
+    driver: local
+
+networks:
+  iphop-network:
+    driver: bridge

@@ -1,0 +1,15 @@
+python-dotenv
+pydantic
+tenacity
+fastapi
+uvicorn[standard]
+sqlalchemy
+passlib[bcrypt]
+python-jose[cryptography]
+cryptography
+apscheduler
+python-multipart
+pytest
+pytest-asyncio
+httpx
+croniter
