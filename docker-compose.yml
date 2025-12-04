@@ -3,7 +3,7 @@ version: '3.8'
 services:
   iphop:
     image: ghcr.io/taoshan98/ip-hop:latest
-    container_name: iphop-app
+    container_name: iphop
     restart: unless-stopped
     ports:
       - "8001:8001"

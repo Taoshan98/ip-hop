@@ -163,7 +163,7 @@ See [Backend Documentation](./backend/README.md#adding-providers) for implementa
 - `GET /api/v1/domains` - List domains
 - `POST /api/v1/domains` - Add domain
 - `PUT /api/v1/domains/{id}` - Update domain
-- `POST /api/v1/domains/{id}/update-now` - Force update
+- `POST /api/v1/domains/{id}/update_ip` - Force update
 - `GET /api/v1/domains/{id}/history` - Update history
 
 **Full API docs:** [Backend README](./backend/README.md)
@@ -295,7 +295,7 @@ The GitHub Actions workflow automatically:
 
 **View logs:**
 ```bash
-docker logs iphop -f
+docker compose logs -f
 ```
 
 **Stop the application:**
@@ -309,17 +309,17 @@ docker stop iphop
 
 **Container won't start:**
 ```bash
-docker logs iphop
+docker compose logs iphop
 ```
 
 **Health check failing:**
 ```bash
-docker inspect iphop | grep Health -A 10
+docker inspect iphop-app | grep Health -A 10
 ```
 
 **Database issues:**
 ```bash
-docker exec -it iphop ls -la /app/backend/database
+docker exec -it iphop-app ls -la /app/backend/database
 ```
 
 ### Production Recommendations
@@ -338,7 +338,7 @@ docker exec -it iphop ls -la /app/backend/database
 | Variable | Description | Required | Default |
 |----------|-------------|----------|---------|
 | `SECRET_KEY` | JWT signing key | ✅ | - |
-| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT access token expiration time in minutes | ❌ | `30` (30 minutes) |
+| `ACCESS_TOKEN_EXPIRE_MINUTES` | JWT access token expiration time in minutes | ❌ | `10080` (7 days) |
 | `ENCRYPTION_KEY` | Fernet encryption key | ✅ | - |
 | `DATABASE_PATH` | SQLite database path | ❌ | `backend/database/ip_hop.db` |
 | `CORS_ORIGINS` | Allowed CORS origins | ❌ | `["http://localhost:3000"]` |

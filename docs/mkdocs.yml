@@ -1,0 +1,84 @@
+site_name: IP-HOP Documentation
+site_url: https://taoshan98.github.io/ip-hop
+site_description: Dynamic DNS management application for home lab environments
+site_author: Taoshan98
+repo_name: Taoshan98/ip-hop
+repo_url: https://github.com/Taoshan98/ip-hop
+docs_dir: pages
+
+theme:
+  name: material
+  language: en
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+
+plugins:
+  - search
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Installation:
+      - Docker Compose: installation/docker-compose.md
+      - Standalone Docker: installation/docker.md
+      - Raspberry Pi: installation/raspberry-pi.md
+  - Configuration:
+      - Environment Variables: configuration/environment.md
+      - DDNS Providers: configuration/providers.md
+      - Network Setup: configuration/network.md
+  - API Reference:
+      - Overview: api/overview.md
+      - Authentication: api/authentication.md
+      - Endpoints: api/endpoints.md
+  - Troubleshooting: troubleshooting.md
+  - Contributing: contributing.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Taoshan98/ip-hop
+  version:
+    provider: mike

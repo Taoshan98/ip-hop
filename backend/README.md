@@ -571,7 +571,7 @@ PROVIDERS = {
 
 ### JWT Tokens
 - **Algorithm**: HS256
-- **Expiry**: 30 days (configurable)
+- **Expiry**: 7 days (configurable)
 - **Storage**: HttpOnly cookies
 - **Key**: `SECRET_KEY` environment variable
 
@@ -729,7 +729,7 @@ ENCRYPTION_KEY=your-32-byte-fernet-key
 
 # Optional
 DATABASE_PATH=backend/database/ip_hop.db
-ACCESS_TOKEN_EXPIRE_MINUTES=30
+ACCESS_TOKEN_EXPIRE_MINUTES=10080
 CORS_ORIGINS=["http://localhost:3000"]
 ```
 
