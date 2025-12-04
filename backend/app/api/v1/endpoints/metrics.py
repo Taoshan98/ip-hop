@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func, Integer
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from app.db.base import SessionLocal
 from app.models import Domain, Provider, IPHistory
 from app.api.v1.endpoints.auth import get_db, oauth2_scheme
@@ -23,7 +23,7 @@ def get_dashboard_metrics(
     active_domains = db.query(Domain).join(Provider).filter(Provider.is_enabled == True).count()
     
     # Calculate 24h timeframe
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     yesterday = now - timedelta(hours=24)
     
     # Updates in last 24h
@@ -92,7 +92,7 @@ def get_response_time_metrics(
     """
     Get average IP update response time metrics over different time periods.
     """
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     
     # Time periods
     periods = {
@@ -126,7 +126,7 @@ def get_ip_change_frequency(
     """
     Track IP address change frequency over time.
     """
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     week_ago = now - timedelta(days=7)
     
     # Get all domains
@@ -172,7 +172,7 @@ def get_provider_success_rates(
     """
     Get detailed success rate statistics per provider.
     """
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     yesterday = now - timedelta(hours=24)
     
     providers = db.query(Provider).all()
@@ -230,7 +230,7 @@ def get_system_uptime(
     """
     Calculate system uptime and reliability metrics.
     """
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     day_ago = now - timedelta(hours=24)
     week_ago = now - timedelta(days=7)
     

@@ -1,6 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from app.models import Provider, Domain, IPHistory
 
 
@@ -50,7 +50,7 @@ def test_domains_with_history(client: TestClient, auth_headers: dict, test_provi
     domain2_id = domain2_resp.json()["id"]
     
     # Add IP history entries directly to DB
-    now = datetime.utcnow()
+    now = datetime.now(UTC)
     history_entries = [
         IPHistory(
             domain_id=domain1_id,
