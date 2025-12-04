@@ -80,9 +80,15 @@ IP-HOP is an open-source project built for the home lab community. We welcome co
 
 !!! example "Dashboard"
     Beautiful, intuitive dashboard for managing your DDNS domains.
+    ![Dashboard](images/screenshots/dashboard.png)
+
+!!! example "Domains List"
+    List of all your DDNS domains.
+    ![Domains List](images/screenshots/domains.png)
 
 !!! example "Provider Management"
     Easy configuration of multiple DDNS providers.
+    ![Provider Management](images/screenshots/providers.png)
 
 ---
 
