@@ -23,8 +23,10 @@ FROM python:3.12-alpine AS backend-builder
 
 WORKDIR /app/backend
 
-# Install build dependencies
-RUN apk add --no-cache gcc musl-dev libffi-dev
+# Install build dependencies with retry logic for ARM64 compatibility
+RUN apk update && \
+    apk add --no-cache gcc musl-dev libffi-dev || \
+    (sleep 2 && apk update && apk add --no-cache gcc musl-dev libffi-dev)
 
 # Copy requirements
 COPY backend/requirements.txt ./
@@ -41,7 +43,10 @@ LABEL version="1.0.0"
 LABEL description="IP-HOP DDNS Management Application"
 
 # Install runtime dependencies only
-RUN apk add --no-cache nodejs npm curl
+# Update APK repositories and install with retry logic for ARM64 compatibility
+RUN apk update && \
+    apk add --no-cache nodejs npm curl || \
+    (sleep 2 && apk update && apk add --no-cache nodejs npm curl)
 
 # Create non-root user
 RUN addgroup -g 1000 iphop && \
