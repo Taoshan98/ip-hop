@@ -6,6 +6,7 @@ from app.core.ip_fetcher import IPFetcher
 from app.schemas.providers import DomainConfig
 from app.providers.dynu import DynuProvider
 from app.providers.cloudflare import CloudflareProvider
+from app.providers.duckdns import DuckDNSProvider
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,8 @@ class DDNSService:
                 provider_instance = DynuProvider(auth_token=creds.get("token"))
             elif provider.type == "cloudflare":
                 provider_instance = CloudflareProvider(auth_token=creds.get("token"))
+            elif provider.type == "duckdns":
+                provider_instance = DuckDNSProvider(token=creds.get("token"))
             else:
                 raise ValueError(f"Unknown provider type: {provider.type}")
 

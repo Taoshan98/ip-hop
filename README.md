@@ -11,7 +11,7 @@
 ## ✨ Features
 
 - 🔄 **Automatic IP Updates**: Monitors your public IP and updates DNS records automatically
-- 🌍 **Multi-Provider Support**: Cloudflare, Dynu, and extensible for more
+- 🌍 **Multi-Provider Support**: Cloudflare, Dynu, DuckDNS, and extensible for more
 - ⏰ **Flexible Scheduling**: Cron-based scheduling for each domain
 - 🔐 **Secure**: Encrypted credentials, JWT authentication, HttpOnly cookies
 - 📊 **History Tracking**: Complete audit trail of all IP changes
@@ -131,6 +131,7 @@ ip-hop/
 |----------|--------|----------|
 | **Cloudflare** | ✅ | API, Zone ID, proxied/DNS-only |
 | **Dynu** | ✅ | API, domain management |
+| **DuckDNS** | ✅ | Free, simple token-based auth |
 | **Custom** | 🔧 | Extensible provider system |
 
 ### Adding New Providers

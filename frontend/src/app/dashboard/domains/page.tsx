@@ -307,6 +307,14 @@ export default function DomainsPage() {
                                     </div>
                                 )}
 
+                                {/* DuckDNS-specific field */}
+                                {selectedProviderType === 'duckdns' && (
+                                    <div className="col-span-2 p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-md text-sm">
+                                        <p className="font-medium">DuckDNS Configuration</p>
+                                        <p>No additional configuration needed! You can enter just the subdomain (e.g., "mysubdomain") or the full domain ("mysubdomain.duckdns.org").</p>
+                                    </div>
+                                )}
+
                                 <div className="col-span-2 space-y-2">
                                     <Label>Auto-Update Schedule (Cron Expression)</Label>
                                     <Input

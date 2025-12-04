@@ -186,6 +186,17 @@ Authorization: Bearer <token>
 }
 ```
 
+**Request (DuckDNS):**
+```json
+{
+  "name": "My DuckDNS",
+  "type": "duckdns",
+  "credentials": {
+    "token": "your-duckdns-token"
+  }
+}
+```
+
 **Response:**
 ```json
 {
@@ -531,6 +542,27 @@ class DNSProvider(ABC):
 
 ---
 
+#### DuckDNS
+
+**Credentials:**
+```json
+{
+  "token": "your-duckdns-token"
+}
+```
+
+**Config:**
+No additional config needed!
+
+**Features:**
+- Simple token-based authentication
+- Automatic subdomain handling
+- Free service with no limits
+- Perfect for home lab
+- Accepts both `subdomain` and `subdomain.duckdns.org`
+
+---
+
 ### Adding a New Provider
 
 1. **Create provider class** in `app/providers/your_provider.py`:
@@ -559,6 +591,7 @@ class YourProvider(DNSProvider):
 PROVIDERS = {
     'cloudflare': CloudflareProvider,
     'dynu': DynuProvider,
+    'duckdns': DuckDNSProvider,
     'your_provider': YourProvider,  # Add here
 }
 ```

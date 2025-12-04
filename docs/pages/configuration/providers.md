@@ -6,6 +6,7 @@ IP-HOP currently supports the following DDNS providers.
 
 - ✅ **Cloudflare**
 - ✅ **Dynu**
+- ✅ **DuckDNS**
 
 ## Adding a Provider
 
@@ -69,6 +70,35 @@ IP-HOP currently supports the following DDNS providers.
 
 - `token`: Your Dynu API token
 - `id` (in domain config): Dynu domain ID
+
+## DuckDNS
+
+### Prerequisites
+
+- DuckDNS account (free)
+- DuckDNS token
+
+### Configuration
+
+1. **Get Token**:
+   - Login to https://www.duckdns.org
+   - Copy your token from the top of the page
+
+2. **Add Provider in IP-HOP**:
+   - Type: `duckdns`
+   - Credentials: `{"token": "your-token-here"}`
+   - Domain: `yoursubdomain` (or `yoursubdomain.duckdns.org`)
+
+### Required Fields
+
+- `token`: Your DuckDNS account token
+
+### Notes
+
+- Domain can be entered as just subdomain (`mysubdomain`) or full domain (`mysubdomain.duckdns.org`)
+- DuckDNS automatically detects your IP if not specified
+- Free service with no limits
+- Perfect for home lab and personal use
 
 ## Testing Configuration
 

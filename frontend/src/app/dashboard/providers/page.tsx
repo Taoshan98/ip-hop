@@ -159,6 +159,7 @@ export default function ProvidersPage() {
                                     >
                                         <option value="dynu">Dynu</option>
                                         <option value="cloudflare">Cloudflare</option>
+                                        <option value="duckdns">DuckDNS</option>
                                     </select>
                                 </div>
                                 <div className="col-span-2 space-y-2">

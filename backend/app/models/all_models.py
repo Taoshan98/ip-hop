@@ -17,7 +17,7 @@ class Provider(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True, nullable=False)
-    type = Column(String, nullable=False) # dynu, cloudflare
+    type = Column(String, nullable=False)
     credentials_encrypted = Column(Text, nullable=False) # Encrypted JSON blob
     is_enabled = Column(Boolean, default=True)
     
