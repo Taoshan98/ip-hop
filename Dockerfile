@@ -1,5 +1,5 @@
 # Build stage for frontend
-FROM node:20-alpine AS frontend-builder
+FROM node:20-alpine3.19 AS frontend-builder
 
 WORKDIR /app/frontend
 
@@ -19,7 +19,7 @@ RUN npm run build
 RUN npm prune --omit=dev
 
 # Build stage for backend
-FROM python:3.12-alpine AS backend-builder
+FROM python:3.12-alpine3.19 AS backend-builder
 
 WORKDIR /app/backend
 
@@ -36,7 +36,7 @@ RUN python -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 # Final production stage
-FROM python:3.12-alpine
+FROM python:3.12-alpine3.19
 
 LABEL maintainer="IP-HOP Team"
 LABEL version="1.0.0"
@@ -44,9 +44,10 @@ LABEL description="IP-HOP DDNS Management Application"
 
 # Install runtime dependencies only
 # Update APK repositories and install with retry logic for ARM64 compatibility
+# Disable triggers to avoid busybox issues in QEMU ARM64 emulation
 RUN apk update && \
-    apk add --no-cache nodejs npm curl || \
-    (sleep 2 && apk update && apk add --no-cache nodejs npm curl)
+    apk add --no-cache --no-scripts nodejs npm curl || \
+    (sleep 2 && apk update && apk add --no-cache --no-scripts nodejs npm curl)
 
 # Create non-root user
 RUN addgroup -g 1000 iphop && \
