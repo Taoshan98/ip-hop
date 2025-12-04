@@ -7,7 +7,9 @@ WORKDIR /app/frontend
 COPY frontend/package*.json ./
 
 # Install ALL dependencies (including devDependencies for build)
-RUN npm ci
+# Use cache mount for npm to speed up builds (especially ARM64)
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci
 
 # Copy frontend source
 COPY frontend/ ./
@@ -32,7 +34,9 @@ RUN apk update && \
 COPY backend/requirements.txt ./
 
 # Install Python dependencies in a virtual environment
-RUN python -m venv /opt/venv && \
+# Use cache mount for pip to speed up builds
+RUN --mount=type=cache,target=/root/.cache/pip \
+    python -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir -r requirements.txt
 
 # Final production stage
