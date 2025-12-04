@@ -2,13 +2,8 @@ name: Build and Publish Docker Image
 
 on:
   push:
-    branches:
-      - main
     tags:
       - 'v*.*.*'  # Trigger on version tags (v1.0.0, v1.2.3, etc.)
-  pull_request:
-    branches:
-      - main
 
 env:
   REGISTRY: ghcr.io
@@ -119,15 +114,11 @@ jobs:
         with:
           images: ${{ steps.image_name.outputs.value }}
           tags: |
-            # Semantic versioning from git tags
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
+            # Semantic versioning - only major version
             type=semver,pattern={{major}}
-            # Branch-based tags
-            type=ref,event=branch
-            type=sha,prefix={{branch}}-
-            # Latest tag for main branch
+            # Latest tag for main branch and version tags
             type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=${{ startsWith(github.ref, 'refs/tags/v') }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v6

@@ -199,13 +199,19 @@ cd frontend && npm test -- --coverage
 
 1. **Set environment variables:**
 ```bash
-SECRET_KEY="your-secret-key-here"
-ENCRYPTION_KEY="your-encryption-key-here"
+SECRET_KEY="your-secret-key-here" #openssl rand -hex 32
+ENCRYPTION_KEY="your-encryption-key-here" #python3 -c 'from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())'
 ```
 
 2. **Start the application:**
 ```bash
 docker-compose up -d
+```
+
+**Permissions:**
+You may be asked to change ownership of the newly created directory if you are running docker as root and creating folders via docker compose
+```bash
+sudo chown -R $USER:$USER ip-hop/
 ```
 
 3. **Access the application:**
