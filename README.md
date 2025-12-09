@@ -11,13 +11,13 @@
 ## ✨ Features
 
 - 🔄 **Automatic IP Updates**: Monitors your public IP and updates DNS records automatically
-- 🌍 **Multi-Provider Support**: Cloudflare, Dynu, DuckDNS, and extensible for more
+- 🌍 **Multi-Provider Support**: Cloudflare, Dynu, DuckDNS, No-IP, and extensible for more
 - ⏰ **Flexible Scheduling**: Cron-based scheduling for each domain
 - 🔐 **Secure**: Encrypted credentials, JWT authentication, HttpOnly cookies
 - 📊 **History Tracking**: Complete audit trail of all IP changes
 - 🎨 **Modern UI**: Beautiful Next.js dashboard with real-time updates
 - 🐳 **Docker Ready**: One-command deployment with Docker Compose
-- ✅ **Fully Tested**: 73 backend + 56 frontend tests with 100% pass rate
+- ✅ **Fully Tested**: 107 backend + 68 frontend tests with 100% pass rate
 
 ## 🚀 Quick Start with Docker (Recommended)
 
@@ -80,7 +80,7 @@ ip-hop/
 │   │   ├── providers/ # DNS provider implementations
 │   │   └── services/  # Business logic
 │   ├── database/    # SQLite database
-│   └── tests/       # 73 comprehensive tests
+│   └── tests/       # 107 comprehensive tests
 │
 ├── frontend/        # Next.js frontend
 │   ├── src/
@@ -88,7 +88,7 @@ ip-hop/
 │   │   ├── components/ # React components
 │   │   ├── context/ # Auth context
 │   │   └── lib/     # Utilities, API client
-│   └── __tests__/   # 56 comprehensive tests
+│   └── __tests__/   # 68 comprehensive tests
 │
 └── docker-compose.yml  # Deployment config
 ```
@@ -102,7 +102,7 @@ ip-hop/
 - **Security**: Fernet encryption for credentials
 - **Scheduling**: APScheduler with Cron expressions
 - **HTTP Client**: httpx (async)
-- **Testing**: pytest (73 tests, 100% pass rate)
+- **Testing**: pytest (107 tests, 100% pass rate)
 
 ### Frontend
 - **Framework**: Next.js 14 (React 19)
@@ -111,7 +111,7 @@ ip-hop/
 - **Components**: Radix UI primitives
 - **State**: React Query for server state
 - **HTTP Client**: Axios
-- **Testing**: Jest + React Testing Library (56 tests)
+- **Testing**: Jest + React Testing Library (68 tests)
 
 ### DevOps
 - **Containerization**: Docker (multi-stage builds)
@@ -132,6 +132,7 @@ ip-hop/
 | **Cloudflare** | ✅ | API, Zone ID, proxied/DNS-only |
 | **Dynu** | ✅ | API, domain management |
 | **DuckDNS** | ✅ | Free, simple token-based auth |
+| **No-IP** | ✅ | Free tier, DDNS Key auth |
 | **Custom** | 🔧 | Extensible provider system |
 
 ### Adding New Providers
@@ -175,14 +176,14 @@ See [Backend Documentation](./backend/README.md#adding-providers) for implementa
 ```bash
 cd backend
 python -m pytest tests/ -v
-# 73 tests, 100% pass rate
+# 107 tests, 100% pass rate
 ```
 
 ### Run Frontend Tests
 ```bash
 cd frontend
 npm test
-# 56 tests, 100% pass rate
+# 68 tests, 100% pass rate
 ```
 
 ### Coverage Reports

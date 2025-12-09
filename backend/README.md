@@ -35,7 +35,7 @@ backend/
 │   └── main.py          # FastAPI application
 ├── database/            # SQLite database storage
 ├── scripts/             # Utility scripts
-└── tests/               # 73 comprehensive tests
+└── tests/               # 107 comprehensive tests
 ```
 
 ## 🔌 API Endpoints
@@ -193,6 +193,18 @@ Authorization: Bearer <token>
   "type": "duckdns",
   "credentials": {
     "token": "your-duckdns-token"
+  }
+}
+```
+
+**Request (No-IP):**
+```json
+{
+  "name": "My No-IP",
+  "type": "noip",
+  "credentials": {
+    "username": "ddns_key_username",
+    "password": "ddns_key_password"
   }
 }
 ```
@@ -592,6 +604,7 @@ PROVIDERS = {
     'cloudflare': CloudflareProvider,
     'dynu': DynuProvider,
     'duckdns': DuckDNSProvider,
+    'noip': NoIPProvider,
     'your_provider': YourProvider,  # Add here
 }
 ```
@@ -632,7 +645,7 @@ pytest tests/ -v
 ```
 
 **Coverage:**
-- 73 tests
+- 107 tests
 - 100% pass rate
 - ~85% code coverage
 
@@ -644,7 +657,7 @@ pytest tests/ -v
 - Token validation
 - Password validation
 
-**Providers** (18 tests):
+**Providers** (40+ tests):
 - CRUD operations
 - Credential encryption
 - Provider-specific logic

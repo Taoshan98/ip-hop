@@ -315,6 +315,14 @@ export default function DomainsPage() {
                                     </div>
                                 )}
 
+                                {/* No-IP-specific field */}
+                                {selectedProviderType === 'noip' && (
+                                    <div className="col-span-2 p-3 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 rounded-md text-sm">
+                                        <p className="font-medium">No-IP Configuration</p>
+                                        <p>Enter your No-IP hostname (e.g., "myhost.ddns.net"). DDNS Key credentials are configured in the Provider settings.</p>
+                                    </div>
+                                )}
+
                                 <div className="col-span-2 space-y-2">
                                     <Label>Auto-Update Schedule (Cron Expression)</Label>
                                     <Input

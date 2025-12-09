@@ -42,7 +42,7 @@ frontend/
 │       ├── errors.ts        # Error handling
 │       └── utils.ts         # Helper functions
 │
-└── __tests__/               # 56 comprehensive tests
+└── __tests__/               # 68 comprehensive tests
 ```
 
 ## 📄 Pages
@@ -103,7 +103,7 @@ frontend/
 
 **Features**:
 - Provider list with status
-- Add new provider (Cloudflare, Dynu)
+- Add new provider (Cloudflare, Dynu, DuckDNS, No-IP)
 - Edit provider settings
 - Enable/disable providers
 - Delete providers (with confirmation)
@@ -568,7 +568,7 @@ npm test
 ```
 
 **Coverage**:
-- 56 tests
+- 68 tests
 - 8 test suites
 - 100% pass rate
 - ~45% code coverage

@@ -7,6 +7,7 @@ IP-HOP currently supports the following DDNS providers.
 - ✅ **Cloudflare**
 - ✅ **Dynu**
 - ✅ **DuckDNS**
+- ✅ **No-IP**
 
 ## Adding a Provider
 
@@ -99,6 +100,39 @@ IP-HOP currently supports the following DDNS providers.
 - DuckDNS automatically detects your IP if not specified
 - Free service with no limits
 - Perfect for home lab and personal use
+
+## No-IP
+
+### Prerequisites
+
+- No-IP account (free tier available)
+- DDNS Key credentials (recommended) or account credentials
+
+### Configuration
+
+1. **Create DDNS Key** (Recommended):
+   - Login to https://www.noip.com
+   - Go to "Dynamic DNS" → "DDNS Keys"
+   - Click "Create New DDNS Key"
+   - Select your hostname(s)
+   - Copy the generated Username and Password
+
+2. **Add Provider in IP-HOP**:
+   - Type: `noip`
+   - Credentials: `{"username": "ddns_key_username", "password": "ddns_key_password"}`
+   - Domain: `yourhost.ddns.net`
+
+### Required Fields
+
+- `username`: DDNS Key username (or account email)
+- `password`: DDNS Key password (or account password)
+
+### Notes
+
+- **DDNS Key is recommended** over account credentials for security
+- DDNS Keys are **free** for all No-IP accounts
+- If a DDNS Key is compromised, only DNS updates are affected (not your full account)
+- Supports all No-IP hostname formats (e.g., `.ddns.net`, `.zapto.org`, etc.)
 
 ## Testing Configuration
 

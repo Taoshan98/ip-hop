@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RefreshCw, CheckCircle, XCircle, Clock, Globe, TrendingUp, Activity, Server, Zap, AlertTriangle } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface Domain {
     id: number;
@@ -95,11 +96,18 @@ export default function DashboardPage() {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['domains'] });
+            queryClient.invalidateQueries({ queryKey: ['dashboard-metrics'] });
             setUpdatingId(null);
+            toast.success('IP Updated Successfully', {
+                description: 'The domain IP has been updated.'
+            });
         },
-        onError: () => {
+        onError: (error: unknown) => {
             setUpdatingId(null);
-            alert("Update failed. Check logs.");
+            const message = error instanceof Error ? error.message : 'Unknown error';
+            toast.error('Update Failed', {
+                description: message
+            });
         }
     });
 

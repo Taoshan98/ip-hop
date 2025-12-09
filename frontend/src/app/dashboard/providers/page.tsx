@@ -29,6 +29,8 @@ export default function ProvidersPage() {
     const [name, setName] = useState('');
     const [type, setType] = useState('dynu');
     const [token, setToken] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [isEnabled, setIsEnabled] = useState(true);
 
     const { data: providers, isLoading } = useQuery<Provider[]>({
@@ -41,11 +43,16 @@ export default function ProvidersPage() {
 
     const createMutation = useMutation({
         mutationFn: async () => {
+            // Build credentials based on provider type
+            const credentials = type === 'noip'
+                ? { username, password }
+                : { token };
+
             await api.post('/providers', {
                 name,
                 type,
                 is_enabled: isEnabled,
-                credentials: { token }
+                credentials
             });
         },
         onSuccess: () => {
@@ -65,9 +72,15 @@ export default function ProvidersPage() {
                 name,
                 is_enabled: isEnabled,
             };
-            // Only send credentials if token is provided (to update it)
-            if (token) {
-                payload.credentials = { token };
+            // Build credentials based on provider type (for editing, we need to know the type)
+            if (type === 'noip') {
+                if (username || password) {
+                    payload.credentials = { username, password };
+                }
+            } else {
+                if (token) {
+                    payload.credentials = { token };
+                }
             }
             await api.put(`/providers/${id}`, payload);
         },
@@ -102,6 +115,8 @@ export default function ProvidersPage() {
         setName('');
         setType('dynu');
         setToken('');
+        setUsername('');
+        setPassword('');
         setIsEnabled(true);
     };
 
@@ -110,7 +125,9 @@ export default function ProvidersPage() {
         setName(provider.name);
         setType(provider.type);
         setIsEnabled(provider.is_enabled);
-        setToken(''); // Don't show existing token for security, only allow overwrite
+        setToken(''); // Don't show existing credentials for security
+        setUsername('');
+        setPassword('');
         setIsAdding(true);
     };
 
@@ -160,18 +177,50 @@ export default function ProvidersPage() {
                                         <option value="dynu">Dynu</option>
                                         <option value="cloudflare">Cloudflare</option>
                                         <option value="duckdns">DuckDNS</option>
+                                        <option value="noip">No-IP</option>
                                     </select>
                                 </div>
-                                <div className="col-span-2 space-y-2">
-                                    <Label>API Token {editingProvider && '(Leave blank to keep unchanged)'}</Label>
-                                    <Input
-                                        type="password"
-                                        value={token}
-                                        onChange={e => setToken(e.target.value)}
-                                        placeholder="Secret Token"
-                                        required={!editingProvider}
-                                    />
-                                </div>
+
+                                {/* Conditional credentials fields based on provider type */}
+                                {type === 'noip' ? (
+                                    <>
+                                        <div className="space-y-2">
+                                            <Label>DDNS Key Username {editingProvider && '(Leave blank to keep unchanged)'}</Label>
+                                            <Input
+                                                type="text"
+                                                value={username}
+                                                onChange={e => setUsername(e.target.value)}
+                                                placeholder="DDNS Key Username"
+                                                required={!editingProvider}
+                                            />
+                                        </div>
+                                        <div className="space-y-2">
+                                            <Label>DDNS Key Password {editingProvider && '(Leave blank to keep unchanged)'}</Label>
+                                            <Input
+                                                type="password"
+                                                value={password}
+                                                onChange={e => setPassword(e.target.value)}
+                                                placeholder="DDNS Key Password"
+                                                required={!editingProvider}
+                                            />
+                                        </div>
+                                        <div className="col-span-2 p-3 bg-orange-50 dark:bg-orange-900/20 text-orange-700 dark:text-orange-300 rounded-md text-sm">
+                                            <p className="font-medium">No-IP Authentication</p>
+                                            <p>Use your DDNS Key credentials (free). Generate them at noip.com → Dynamic DNS → DDNS Keys.</p>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div className="col-span-2 space-y-2">
+                                        <Label>API Token {editingProvider && '(Leave blank to keep unchanged)'}</Label>
+                                        <Input
+                                            type="password"
+                                            value={token}
+                                            onChange={e => setToken(e.target.value)}
+                                            placeholder="Secret Token"
+                                            required={!editingProvider}
+                                        />
+                                    </div>
+                                )}
                                 <div className="col-span-2 flex items-center space-x-2">
                                     <input
                                         type="checkbox"
