@@ -19,6 +19,22 @@
 - 🐳 **Docker Ready**: One-command deployment with Docker Compose
 - ✅ **Fully Tested**: 107 backend + 68 frontend tests with 100% pass rate
 
+## 📸 Screenshots
+<details>
+
+   ### Dashboard
+  ![Dashboard](./docs/pages/images/screenshots/dashboard.png)
+
+   ### Providers
+  ![Providers](./docs/pages/images/screenshots/providers.png)
+
+   ### Domains
+  ![Domains](./docs/pages/images/screenshots/domains.png)
+
+   ### History
+  ![History](./docs/pages/images/screenshots/history.png)
+</details>
+
 ## 🚀 Quick Start with Docker (Recommended)
 
 ### Prerequisites

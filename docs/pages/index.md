@@ -86,6 +86,10 @@ IP-HOP is an open-source project built for the home lab community. We welcome co
     List of all your DDNS domains.
     ![Domains List](images/screenshots/domains.png)
 
+!!! example "History"
+    History of all IP changes for the domain.
+    ![History](images/screenshots/history.png)
+
 !!! example "Provider Management"
     Easy configuration of multiple DDNS providers.
     ![Provider Management](images/screenshots/providers.png)
